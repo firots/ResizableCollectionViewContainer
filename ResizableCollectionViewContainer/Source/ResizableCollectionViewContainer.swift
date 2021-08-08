@@ -19,9 +19,13 @@ class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:
     
     private var calculatedLargestSize: CGSize?
     
+    var collectionViewEdgeInsets: UIEdgeInsets {
+        UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        translatesAutoresizingMaskIntoConstraints = false
         collectionViewHeightConstraint = resizableCollectionView.heightAnchor.constraint(equalToConstant: Cell.targetCellSize.height)
         collectionViewHeightConstraint.isActive = true
     }
@@ -66,7 +70,7 @@ class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:
 
         let cellSize = cell.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         
-        collectionViewHeightConstraint.constant = cellSize.height
+        collectionViewHeightConstraint.constant = cellSize.height + collectionViewEdgeInsets.top + collectionViewEdgeInsets.bottom
         
         calculatedLargestSize = cellSize
         
@@ -116,6 +120,8 @@ protocol ResizableCollectionViewCell where Self: UICollectionViewCell {
 
 extension ResizableCollectionViewCell {
     func loadTargetSizeConstraints() {
+        translatesAutoresizingMaskIntoConstraints = false
+        
         let heightConstraint = heightAnchor.constraint(equalToConstant: NewsCollectionViewCell.targetCellSize.height)
         heightConstraint.priority = UILayoutPriority(449)
         

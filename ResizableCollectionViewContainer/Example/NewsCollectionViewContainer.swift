@@ -14,6 +14,10 @@ class NewsCollectionViewContainer: ResizableCollectionViewContainer<NewsCollecti
         collectionView
     }
     
+    override var collectionViewEdgeInsets: UIEdgeInsets {
+        UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    }
+    
     override func awakeFromNib() {
         subviews.first?.translatesAutoresizingMaskIntoConstraints = false
         subviews.first?.fillParent()
@@ -65,6 +69,10 @@ class NewsCollectionViewContainer: ResizableCollectionViewContainer<NewsCollecti
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        collectionViewEdgeInsets
     }
 }
 
