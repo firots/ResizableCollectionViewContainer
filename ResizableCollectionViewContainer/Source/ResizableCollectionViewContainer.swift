@@ -26,7 +26,7 @@ class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:
     override func awakeFromNib() {
         super.awakeFromNib()
         translatesAutoresizingMaskIntoConstraints = false
-        collectionViewHeightConstraint = resizableCollectionView.heightAnchor.constraint(equalToConstant: Cell.targetCellSize.height)
+        collectionViewHeightConstraint = resizableCollectionView.heightAnchor.constraint(equalToConstant: Cell.targetCellSize.height + collectionViewEdgeInsets.top + collectionViewEdgeInsets.bottom)
         collectionViewHeightConstraint.isActive = true
     }
     
