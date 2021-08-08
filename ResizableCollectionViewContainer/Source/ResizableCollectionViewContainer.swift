@@ -42,7 +42,7 @@ class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:
         if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
             resetCalculatedCellSize()
             calculateLargestCellSize()
-            resizableCollectionView.collectionViewLayout.invalidateLayout()
+            resizableCollectionView.reloadData()
         }
     }
     
