@@ -13,22 +13,16 @@ class NewsCollectionViewCell: UICollectionViewCell, ResizableCollectionViewCell 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
-    static var targetCellSize = CGSize(width: 200, height: 200)
+    static let targetCellSize = CGSize(width: 175, height: 275)
+    static let forceAspectRatio = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let heightConstraint = heightAnchor.constraint(equalToConstant: NewsCollectionViewCell.targetCellSize.height)
-        heightConstraint.priority = UILayoutPriority(449)
-        
-        let widthConstraint = widthAnchor.constraint(equalToConstant: NewsCollectionViewCell.targetCellSize.width)
-        widthConstraint.priority = UILayoutPriority(449)
-        
-        widthConstraint.isActive = true
-        heightConstraint.isActive = true
+        loadTargetSizeConstraints()
     }
     
-    func loadModel<T>(model: T) where T : ResizableCollectionViewModel {
+    func loadModel<T>(model: T) where T : Any {
         guard let model =  model as? NewsModel else {
             fatalError("Wrong model loaded in \(#file)")
         }

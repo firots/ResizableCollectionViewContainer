@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:ResizableCollectionViewModel>: UIView, UICollectionViewDelegateFlowLayout {
+class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:Any>: UIView, UICollectionViewDelegateFlowLayout {
     
     weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
@@ -55,6 +55,12 @@ class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:
         
         cell.loadModel(model: model)
         
+        cell.widthAnchor.constraint(lessThanOrEqualToConstant: UIScreen.main.bounds.width).isActive = true
+        
+        if Cell.forceAspectRatio {
+            cell.heightAnchor.constraint(equalTo: cell.widthAnchor, multiplier: Cell.targetCellSize.height / Cell.targetCellSize.width).isActive = true
+        }
+        
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
 
@@ -85,7 +91,7 @@ class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:
     }
     
     /* Override for custom content size calculations or better performance, no need to call super. */
-    func calculateEstimatedContentSize(for model: Model) -> Int {
+    func calculateEstimatedContentSize(for model: Any) -> Int {
         let mirror = Mirror(reflecting: model)
         
         var size = 0
@@ -100,13 +106,23 @@ class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:
     }
 }
 
-protocol ResizableCollectionViewModel {
-    
-}
-
 /* Conform your cell to this protocol. */
 protocol ResizableCollectionViewCell where Self: UICollectionViewCell {
     static var reuseId: String { get }
-    func loadModel<T: ResizableCollectionViewModel>(model: T)
+    func loadModel<T: Any>(model: T)
     static var targetCellSize: CGSize { get }
+    static var forceAspectRatio: Bool { get }
+}
+
+extension ResizableCollectionViewCell {
+    func loadTargetSizeConstraints() {
+        let heightConstraint = heightAnchor.constraint(equalToConstant: NewsCollectionViewCell.targetCellSize.height)
+        heightConstraint.priority = UILayoutPriority(449)
+        
+        let widthConstraint = widthAnchor.constraint(equalToConstant: NewsCollectionViewCell.targetCellSize.width)
+        widthConstraint.priority = UILayoutPriority(449)
+        
+        widthConstraint.isActive = true
+        heightConstraint.isActive = true
+    }
 }

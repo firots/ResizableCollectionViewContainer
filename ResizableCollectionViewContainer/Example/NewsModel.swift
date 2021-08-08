@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewsModel: ResizableCollectionViewModel {
+struct NewsModel {
     let title: String
     let subtitle: String
 }
