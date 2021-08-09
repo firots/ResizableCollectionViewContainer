@@ -45,11 +45,11 @@ class NewsCollectionViewContainer: ResizableCollectionViewContainer<NewsCollecti
         items = [
             NewsModel(title: "Why Did Attorney General Loretta Lynch Plead The Fifth?", subtitle: "Why Did Attorney General Loretta Lynch Plead The Fifth? Barracuda Brigade 2016-10-28 Print The administration is blocking congressional probe into cash payments to Iran."),
             
-            NewsModel(title: "Weiner Cooperating With FBI On Hillary Email Investigation", subtitle: "Fox News Sunday reported this morning that Anthony Weiner is cooperating with the FBI, which has re-opened (yes, lefties: “re-opened”) the investigation into Hillary Clinton’s classified emails. "),
+            NewsModel(title: "Weiner Cooperating With FBI On Hillary Email Investigation", subtitle: "Fox News Sunday reported this morning that Anthony Weiner is cooperating with the FBI, which has re-opened (yes, lefties: “re-opened”) the investigation into Hillary Clinton’s classified emails."),
             
             NewsModel(title: "FANTASTIC! TRUMP'S 7 POINT PLAN To Reform Healthcare Begins With A Bombshell!", subtitle: "Email HEALTHCARE REFORM TO MAKE AMERICA GREAT AGAIN Since March of 2010, the American people have had to suffer under the incredible economic burden of the Affordable Care Act—Obamacare."),
             
-            NewsModel(title: "The Crisis of the European Union Is Irreversible ", subtitle: "Taming the corporate media beast The Crisis of the European Union Is Irreversible The political-economic block and its common currency cannot be salvaged Donate! "),
+            NewsModel(title: "The Crisis of the European Union Is Irreversible ", subtitle: "Taming the corporate media beast The Crisis of the European Union Is Irreversible The political-economic block and its common currency cannot be salvaged Donate!"),
         ]
     }
     

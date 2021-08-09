@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model:Any>: UIView, UICollectionViewDelegateFlowLayout {
+class ResizableCollectionViewContainer<Cell: ResizableCollectionViewCell, Model: Any>: UIView, UICollectionViewDelegateFlowLayout {
     
     weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
